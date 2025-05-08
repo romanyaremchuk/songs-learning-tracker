@@ -1,13 +1,34 @@
 import React from "react";
 import styles from "./SongsFilter.module.css";
 
-const SongsFilter = () => {
+interface Props {
+  setFilter: (filter: string) => void;
+}
+
+const SongsFilter = ({ setFilter }: Props) => {
   return (
     <div className={styles.SongsFilter}>
-      <button className={styles.buttonStyle}>All songs</button>
-      <button className={styles.buttonStyle}>To Learn</button>
-      <button className={styles.buttonStyle}>Learning</button>
-      <button className={styles.buttonStyle}>Learned</button>
+      <button className={styles.buttonStyle} onClick={() => setFilter("all")}>
+        All songs
+      </button>
+      <button
+        className={styles.buttonStyle}
+        onClick={() => setFilter("wantToLearn")}
+      >
+        To Learn
+      </button>
+      <button
+        className={styles.buttonStyle}
+        onClick={() => setFilter("learning")}
+      >
+        Learning
+      </button>
+      <button
+        className={styles.buttonStyle}
+        onClick={() => setFilter("learned")}
+      >
+        Learned
+      </button>
     </div>
   );
 };
