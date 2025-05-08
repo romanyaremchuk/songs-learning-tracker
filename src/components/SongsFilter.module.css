@@ -1,0 +1,20 @@
+.SongsFilter {
+  height: 80px;
+  width: 100%;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  gap: 10px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
+  background-color: red;
+}
+
+.buttonStyle {
+  height: 100%;
+  flex: 1;
+}
