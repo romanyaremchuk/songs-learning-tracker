@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import SongForm from "./components/SongForm";
-import SongLists from "./components/SongLists";
 import SongsFilter from "./components/SongsFilter";
 import { FakeSongsData } from "./data/FakeData";
 import SongList from "./components/SongList";

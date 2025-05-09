@@ -1,0 +1,11 @@
+.SongItem {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  background-color: green;
+}
+
+.SongItemMenu {
+  margin-left: auto;
+}
