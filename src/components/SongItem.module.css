@@ -11,7 +11,7 @@
 .SongItemMenu {
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 55%;
   z-index: 10;
   background-color: red;
 }
