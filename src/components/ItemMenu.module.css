@@ -3,5 +3,9 @@
   max-width: 100px;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+}
+
+.ItemMenuButton {
+  min-height: 40px;
+  min-width: 100px;
 }
