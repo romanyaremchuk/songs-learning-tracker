@@ -7,17 +7,13 @@ import SongList from "./components/SongList";
 
 function App() {
   const [filter, setFilter] = useState("all");
-
-  const filteredSongs =
-    filter === "all"
-      ? FakeSongsData
-      : FakeSongsData.filter((song) => song.status === filter);
+  const [songs, setSongs] = useState(FakeSongsData);
 
   return (
     <div className="AppRoot">
       <SongForm />
       <SongsFilter setFilter={setFilter} />
-      <SongList songs={filteredSongs} header={filter} />
+      <SongList songs={songs} setSongs={setSongs} header={filter} />
     </div>
   );
 }

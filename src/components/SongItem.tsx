@@ -2,9 +2,14 @@ import React, { useRef, useState } from "react";
 import { Song } from "../types/song";
 import ItemMenu from "./ItemMenu";
 import style from "./SongItem.module.css";
-import useClickOutside from "../hooks/useClickOutside"; // убедись, что хук есть
+import useClickOutside from "../hooks/useClickOutside";
 
-const SongItem = ({ song }: { song: Song }) => {
+interface Props {
+  song: Song;
+  handleRemoveSong: () => void;
+}
+
+const SongItem = ({ song, handleRemoveSong: removeSong }: Props) => {
   const [itemMenuShown, setItemMenuShown] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -18,7 +23,7 @@ const SongItem = ({ song }: { song: Song }) => {
       </p>
       {itemMenuShown ? (
         <div ref={wrapperRef} className={style.SongItemMenu}>
-          <ItemMenu />
+          <ItemMenu onRemove={removeSong} />
         </div>
       ) : (
         <div className={style.SongShowItemMenuButton}>
