@@ -8,7 +8,8 @@ import { Song } from "./types/song";
 
 function App() {
   const [filter, setFilter] = useState("all");
-  const [songName, setSongName] = useState<Song | null>(null);
+  //TODO may be use as update of whole song? not just name
+  const [updatedSong, setUpdatedSong] = useState<Song | null>(null);
   const [songs, setSongs] = useState(FakeSongsData);
 
   return (
@@ -17,7 +18,7 @@ function App() {
       <SongsFilter setFilter={setFilter} />
       <SongList
         songs={songs}
-        setSongName={setSongName}
+        setUpdatedSong={setUpdatedSong}
         setSongs={setSongs}
         header={filter}
       />

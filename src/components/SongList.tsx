@@ -6,10 +6,10 @@ interface Props {
   songs: Song[];
   header: string;
   setSongs: (songs: Song[]) => void;
-  setSongName: (song: Song) => void;
+  setUpdatedSong: (song: Song) => void;
 }
 
-const SongList = ({ songs, header, setSongs, setSongName }: Props) => {
+const SongList = ({ songs, header, setSongs, setUpdatedSong }: Props) => {
   const filteredSongs =
     header === "all" ? songs : songs.filter((song) => song.status === header);
   return (
@@ -23,9 +23,8 @@ const SongList = ({ songs, header, setSongs, setSongName }: Props) => {
             handleRemoveSong={() =>
               setSongs(songs.filter((item) => item !== song))
             }
-            // handleSongRename={() => setSongName(song)}
-            handleSongRename={(updatedSong) => {
-              setSongName(updatedSong);
+            handleSongUpdate={(updatedSong) => {
+              setUpdatedSong(updatedSong);
               const updatedSongs = songs.map((songItem) =>
                 songItem.id === updatedSong.id ? updatedSong : songItem
               );
