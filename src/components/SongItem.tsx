@@ -11,18 +11,22 @@ interface Props {
 }
 
 const SongItem = ({ song, handleRemoveSong, handleSongUpdate }: Props) => {
-  const [itemMenuShown, setItemMenuShown] = useState(false);
+  const [itemIsMenuShown, setIsItemMenuShown] = useState(false);
   const [isEditingName, setIsEditingName] = useState(false);
+  const [isEditingURL, setIsEditingURL] = useState(false);
   const [newSongName, setNewSongName] = useState(song.name);
+  const [newURL, setNewURL] = useState(song.url);
   const itemMenuRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputNameRef = useRef<HTMLInputElement>(null);
+  const inputURLRef = useRef<HTMLInputElement>(null);
 
   useClickOutside(itemMenuRef as React.RefObject<HTMLElement>, () => {
-    setItemMenuShown(false);
+    setIsItemMenuShown(false);
     setIsEditingName(false);
+    setIsEditingURL(false);
   });
 
-  useClickOutside(inputRef as React.RefObject<HTMLElement>, () => {
+  useClickOutside(inputNameRef as React.RefObject<HTMLElement>, () => {
     if (isEditingName) {
       if (newSongName.length === 0) {
         handleSongUpdate({ ...song, name: song.name });
@@ -31,27 +35,36 @@ const SongItem = ({ song, handleRemoveSong, handleSongUpdate }: Props) => {
         handleSongUpdate({ ...song, name: newSongName });
       }
 
-      setItemMenuShown(false);
+      setIsItemMenuShown(false);
       setIsEditingName(false);
     }
   });
 
+  useClickOutside(inputURLRef as React.RefObject<HTMLElement>, () => {
+    if (isEditingURL) {
+      if (newURL.length === 0) {
+        handleSongUpdate({ ...song, url: song.url });
+        setNewURL(song.url);
+      } else {
+        handleSongUpdate({ ...song, url: newURL });
+      }
+
+      setIsItemMenuShown(false);
+      setIsEditingURL(false);
+    }
+  });
+
   useEffect(() => {
-    inputRef.current?.focus();
-  }, [isEditingName]);
+    if (inputNameRef.current !== null) {
+      inputNameRef.current.focus();
+    } else if (inputURLRef.current !== null) {
+      inputURLRef.current.focus();
+    }
+  }, [isEditingName, isEditingURL]);
 
   return (
     <div className={style.SongItem}>
-      {isEditingName ? (
-        <input
-          ref={inputRef}
-          value={newSongName}
-          onChange={(e) => setNewSongName(e.target.value)}
-          onBlur={() => {
-            handleSongUpdate({ ...song, name: newSongName });
-          }}
-        />
-      ) : (
+      {!isEditingName && (
         <p>
           {song.url.length === 0 ? (
             song.name
@@ -61,20 +74,47 @@ const SongItem = ({ song, handleRemoveSong, handleSongUpdate }: Props) => {
         </p>
       )}
 
-      {itemMenuShown ? (
+      {isEditingName && !isEditingURL && (
+        <input
+          ref={inputNameRef}
+          value={newSongName}
+          onChange={(e) => setNewSongName(e.target.value)}
+          onBlur={() => {
+            handleSongUpdate({ ...song, name: newSongName });
+          }}
+        />
+      )}
+
+      {isEditingURL && (
+        <input
+          ref={inputURLRef}
+          value={newURL}
+          onChange={(e) => setNewURL(e.target.value)}
+          onBlur={() => {
+            handleSongUpdate({ ...song, url: newURL });
+          }}
+        />
+      )}
+
+      {itemIsMenuShown ? (
         <div ref={itemMenuRef} className={style.SongItemMenu}>
           <ItemMenu
             onSongNameRename={() => {
-              setItemMenuShown(false);
+              setIsItemMenuShown(false);
               handleSongUpdate(song);
               setIsEditingName(true);
+            }}
+            onSongURLEdit={() => {
+              setIsItemMenuShown(false);
+              handleSongUpdate(song);
+              setIsEditingURL(true);
             }}
             onRemove={handleRemoveSong}
           />
         </div>
       ) : (
         <div className={style.SongShowItemMenuButton}>
-          <button onClick={() => setItemMenuShown(true)}>Show menu</button>
+          <button onClick={() => setIsItemMenuShown(true)}>Show menu</button>
         </div>
       )}
     </div>

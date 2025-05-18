@@ -4,15 +4,18 @@ import style from "./ItemMenu.module.css";
 interface Props {
   onRemove: () => void;
   onSongNameRename: () => void;
+  onSongURLEdit: () => void;
 }
 
-const ItemMenu = ({ onRemove, onSongNameRename }: Props) => {
+const ItemMenu = ({ onRemove, onSongNameRename, onSongURLEdit }: Props) => {
   return (
     <div className={style.ItemMenu}>
       <button onClick={onSongNameRename} className={style.ItemMenuButton}>
         Rename
       </button>
-      <button className={style.ItemMenuButton}>Edit URL</button>
+      <button onClick={onSongURLEdit} className={style.ItemMenuButton}>
+        Edit URL
+      </button>
       <button onClick={onRemove} className={style.ItemMenuButton}>
         Remove
       </button>
