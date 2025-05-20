@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div className="AppRoot">
-      <SongForm />
+      <SongForm songs={songs} setSongs={setSongs} />
       <SongsFilter setFilter={setFilter} />
       <SongList
         songs={songs}
