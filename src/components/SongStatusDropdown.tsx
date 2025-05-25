@@ -14,6 +14,7 @@ const SongStatusDropdown = ({
   return (
     <>
       <select
+        className="border p-2 w-full"
         onFocus={() => setIsVisible?.(true)}
         onBlur={() => setIsVisible?.(false)}
         onChange={handleSelectChange}

@@ -26,20 +26,25 @@ const SongForm = ({ songs, setSongs }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form
+      className="flex items-center justify-between p-4 background bg-red-300"
+      onSubmit={handleSubmit}
+    >
+      <label className="font-bold mb-2">
         {" "}
         Song name:{" "}
         <input
+          className="border p-2 w-full"
           value={name}
           onChange={(e) => setName(e.target.value)}
           name="inputSongName"
         />{" "}
       </label>
-      <label>
+      <label className="font-bold mb-2">
         {" "}
         URL:{" "}
         <input
+          className="border p-2 w-full"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           name="inputURL"
@@ -51,7 +56,9 @@ const SongForm = ({ songs, setSongs }: Props) => {
           handleSelectChange={handleSelectChange}
         />
       </label>
-      <button type="submit">Add song</button>
+      <button className="filter-btn" type="submit">
+        Add song
+      </button>
     </form>
   );
 };
