@@ -1,1 +1,4 @@
 @import "tailwindcss";
+.filter-btn {
+  @apply rounded-md mx-2 bg-blue-500 text-white p-2;
+}
