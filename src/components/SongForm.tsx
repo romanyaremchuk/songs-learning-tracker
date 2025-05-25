@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Song } from "../types/song";
 import { v4 as uuidv4 } from "uuid";
+import SongStatusDropdown from "./SongStatusDropdown";
 
 interface Props {
   songs: Song[];
@@ -45,11 +46,10 @@ const SongForm = ({ songs, setSongs }: Props) => {
         />{" "}
       </label>
       <label>
-        <select onChange={handleSelectChange}>
-          <option value={"wantToLearn"}>I want to learn</option>
-          <option value={"learning"}>I am learning</option>
-          <option value={"learned"}>I have learned</option>
-        </select>
+        <SongStatusDropdown
+          value={status}
+          handleSelectChange={handleSelectChange}
+        />
       </label>
       <button type="submit">Add song</button>
     </form>

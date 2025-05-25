@@ -3,6 +3,7 @@ import { Song } from "../types/song";
 import ItemMenu from "./ItemMenu";
 import style from "./SongItem.module.css";
 import useClickOutside from "../hooks/useClickOutside";
+import SongStatusDropdown from "./SongStatusDropdown";
 
 interface Props {
   song: Song;
@@ -14,8 +15,12 @@ const SongItem = ({ song, handleRemoveSong, handleSongUpdate }: Props) => {
   const [itemIsMenuShown, setIsItemMenuShown] = useState(false);
   const [isEditingName, setIsEditingName] = useState(false);
   const [isEditingURL, setIsEditingURL] = useState(false);
+  const [isEditingStatus, setIsEditingStatus] = useState(false);
   const [newSongName, setNewSongName] = useState(song.name);
   const [newURL, setNewURL] = useState(song.url);
+  const [status, setStatus] = useState<"wantToLearn" | "learning" | "learned">(
+    song.status
+  );
   const itemMenuRef = useRef<HTMLDivElement>(null);
   const inputNameRef = useRef<HTMLInputElement>(null);
   const inputURLRef = useRef<HTMLInputElement>(null);
@@ -24,7 +29,14 @@ const SongItem = ({ song, handleRemoveSong, handleSongUpdate }: Props) => {
     setIsItemMenuShown(false);
     setIsEditingName(false);
     setIsEditingURL(false);
+    setIsEditingStatus(false);
   });
+
+  const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newStatus = e.target.value as "wantToLearn" | "learning" | "learned";
+    setStatus(newStatus as "wantToLearn" | "learning" | "learned");
+    handleSongUpdate({ ...song, status: newStatus });
+  };
 
   useClickOutside(inputNameRef as React.RefObject<HTMLElement>, () => {
     if (isEditingName) {
@@ -74,7 +86,7 @@ const SongItem = ({ song, handleRemoveSong, handleSongUpdate }: Props) => {
         </p>
       )}
 
-      {isEditingName && !isEditingURL && (
+      {isEditingName && (
         <input
           ref={inputNameRef}
           value={newSongName}
@@ -96,6 +108,12 @@ const SongItem = ({ song, handleRemoveSong, handleSongUpdate }: Props) => {
         />
       )}
 
+      <SongStatusDropdown
+        value={status}
+        setIsVisible={setIsEditingURL}
+        handleSelectChange={handleStatusChange}
+      />
+
       {itemIsMenuShown ? (
         <div ref={itemMenuRef} className={style.SongItemMenu}>
           <ItemMenu
@@ -110,6 +128,11 @@ const SongItem = ({ song, handleRemoveSong, handleSongUpdate }: Props) => {
               setIsEditingURL(true);
             }}
             onRemove={handleRemoveSong}
+            onChangeStatus={() => {
+              setIsItemMenuShown(false);
+              handleSongUpdate(song);
+              setIsEditingName(true);
+            }}
           />
         </div>
       ) : (

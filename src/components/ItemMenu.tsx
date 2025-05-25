@@ -1,10 +1,10 @@
-import React from "react";
 import style from "./ItemMenu.module.css";
 
 interface Props {
   onRemove: () => void;
   onSongNameRename: () => void;
   onSongURLEdit: () => void;
+  onChangeStatus: () => void;
 }
 
 const ItemMenu = ({ onRemove, onSongNameRename, onSongURLEdit }: Props) => {

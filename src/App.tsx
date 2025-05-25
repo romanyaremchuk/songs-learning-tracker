@@ -20,7 +20,7 @@ function App() {
         songs={songs}
         setUpdatedSong={setUpdatedSong}
         setSongs={setSongs}
-        header={filter}
+        statusCategory={filter}
       />
     </div>
   );

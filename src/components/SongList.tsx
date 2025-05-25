@@ -4,17 +4,24 @@ import style from "./SongList.module.css";
 
 interface Props {
   songs: Song[];
-  header: string;
+  statusCategory: string;
   setSongs: (songs: Song[]) => void;
   setUpdatedSong: (song: Song) => void;
 }
 
-const SongList = ({ songs, header, setSongs, setUpdatedSong }: Props) => {
+const SongList = ({
+  songs,
+  statusCategory,
+  setSongs,
+  setUpdatedSong,
+}: Props) => {
   const filteredSongs =
-    header === "all" ? songs : songs.filter((song) => song.status === header);
+    statusCategory === "all"
+      ? songs
+      : songs.filter((song) => song.status === statusCategory);
   return (
     <>
-      <h1>{header}</h1>
+      <h1>{statusCategory}</h1>
       <div className={style.SongList}>
         {filteredSongs.map((song) => (
           <SongItem

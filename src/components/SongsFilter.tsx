@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./SongsFilter.module.css";
 
 interface Props {
