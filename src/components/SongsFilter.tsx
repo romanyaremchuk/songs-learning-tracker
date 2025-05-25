@@ -6,28 +6,11 @@ interface Props {
 
 const SongsFilter = ({ setFilter }: Props) => {
   return (
-    <div className={styles.SongsFilter}>
-      <button className={styles.buttonStyle} onClick={() => setFilter("all")}>
-        All songs
-      </button>
-      <button
-        className={styles.buttonStyle}
-        onClick={() => setFilter("wantToLearn")}
-      >
-        To Learn
-      </button>
-      <button
-        className={styles.buttonStyle}
-        onClick={() => setFilter("learning")}
-      >
-        Learning
-      </button>
-      <button
-        className={styles.buttonStyle}
-        onClick={() => setFilter("learned")}
-      >
-        Learned
-      </button>
+    <div>
+      <button onClick={() => setFilter("all")}>All songs</button>
+      <button onClick={() => setFilter("wantToLearn")}>To Learn</button>
+      <button onClick={() => setFilter("learning")}>Learning</button>
+      <button onClick={() => setFilter("learned")}>Learned</button>
     </div>
   );
 };

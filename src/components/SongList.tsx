@@ -22,7 +22,7 @@ const SongList = ({
   return (
     <>
       <h1>{statusCategory}</h1>
-      <div className={style.SongList}>
+      <div>
         {filteredSongs.map((song) => (
           <SongItem
             key={song.id}

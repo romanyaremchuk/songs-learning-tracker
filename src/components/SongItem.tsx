@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Song } from "../types/song";
 import ItemMenu from "./ItemMenu";
-import style from "./SongItem.module.css";
+//import style from "./SongItem.module.css";
 import useClickOutside from "../hooks/useClickOutside";
 import SongStatusDropdown from "./SongStatusDropdown";
 
@@ -75,7 +75,7 @@ const SongItem = ({ song, handleRemoveSong, handleSongUpdate }: Props) => {
   }, [isEditingName, isEditingURL]);
 
   return (
-    <div className={style.SongItem}>
+    <div>
       {!isEditingName && (
         <p>
           {song.url.length === 0 ? (
@@ -115,7 +115,7 @@ const SongItem = ({ song, handleRemoveSong, handleSongUpdate }: Props) => {
       />
 
       {itemIsMenuShown ? (
-        <div ref={itemMenuRef} className={style.SongItemMenu}>
+        <div ref={itemMenuRef}>
           <ItemMenu
             onSongNameRename={() => {
               setIsItemMenuShown(false);
@@ -136,7 +136,7 @@ const SongItem = ({ song, handleRemoveSong, handleSongUpdate }: Props) => {
           />
         </div>
       ) : (
-        <div className={style.SongShowItemMenuButton}>
+        <div>
           <button onClick={() => setIsItemMenuShown(true)}>Show menu</button>
         </div>
       )}

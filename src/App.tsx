@@ -13,7 +13,7 @@ function App() {
   const [songs, setSongs] = useState(FakeSongsData);
 
   return (
-    <div className="AppRoot">
+    <div>
       <SongForm songs={songs} setSongs={setSongs} />
       <SongsFilter setFilter={setFilter} />
       <SongList

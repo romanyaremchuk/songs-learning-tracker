@@ -9,16 +9,10 @@ interface Props {
 
 const ItemMenu = ({ onRemove, onSongNameRename, onSongURLEdit }: Props) => {
   return (
-    <div className={style.ItemMenu}>
-      <button onClick={onSongNameRename} className={style.ItemMenuButton}>
-        Rename
-      </button>
-      <button onClick={onSongURLEdit} className={style.ItemMenuButton}>
-        Edit URL
-      </button>
-      <button onClick={onRemove} className={style.ItemMenuButton}>
-        Remove
-      </button>
+    <div>
+      <button onClick={onSongNameRename}>Rename</button>
+      <button onClick={onSongURLEdit}>Edit URL</button>
+      <button onClick={onRemove}>Remove</button>
     </div>
   );
 };
