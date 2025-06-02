@@ -27,24 +27,24 @@ const SongForm = ({ songs, setSongs }: Props) => {
 
   return (
     <form
-      className="flex items-center justify-between p-4 background bg-red-300"
+      className="flex justify-center-safe p-2.5 background bg-red-300"
       onSubmit={handleSubmit}
     >
-      <label className="font-bold mb-2">
+      <label>
         {" "}
         Song name:{" "}
         <input
-          className="border p-2 w-full"
+          className="border ml-2.5 p-2 h-10"
           value={name}
           onChange={(e) => setName(e.target.value)}
           name="inputSongName"
         />{" "}
       </label>
-      <label className="font-bold mb-2">
+      <label className="ms-5">
         {" "}
         URL:{" "}
         <input
-          className="border p-2 w-full"
+          className="border ml-2.5 p-2 h-10"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           name="inputURL"
@@ -52,6 +52,7 @@ const SongForm = ({ songs, setSongs }: Props) => {
       </label>
       <label>
         <SongStatusDropdown
+          styles="border ms-5 p-2 h-10"
           value={status}
           handleSelectChange={handleSelectChange}
         />

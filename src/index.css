@@ -2,3 +2,7 @@
 .filter-btn {
   @apply rounded-md mx-2 bg-blue-500 text-white p-2;
 }
+
+.filter-btn-big {
+  @apply rounded-md mx-2 bg-blue-500 text-white p-10 mt-2.5 max-w-1/2;
+}

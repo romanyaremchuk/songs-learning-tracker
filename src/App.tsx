@@ -14,14 +14,16 @@ function App() {
 
   return (
     <div>
-      <SongForm songs={songs} setSongs={setSongs} />
-      <SongsFilter setFilter={setFilter} />
-      <SongList
-        songs={songs}
-        setUpdatedSong={setUpdatedSong}
-        setSongs={setSongs}
-        statusCategory={filter}
-      />
+      <div className="max-w-[1200px] mx-auto">
+        <SongForm songs={songs} setSongs={setSongs} />
+        <SongsFilter setFilter={setFilter} />
+        <SongList
+          songs={songs}
+          setUpdatedSong={setUpdatedSong}
+          setSongs={setSongs}
+          statusCategory={filter}
+        />
+      </div>
     </div>
   );
 }

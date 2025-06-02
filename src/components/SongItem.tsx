@@ -75,17 +75,18 @@ const SongItem = ({ song, handleRemoveSong, handleSongUpdate }: Props) => {
   }, [isEditingName, isEditingURL]);
 
   return (
-    <div>
-      {!isEditingName && (
-        <p>
-          {song.url.length === 0 ? (
-            song.name
-          ) : (
-            <a href={song.url}>{song.name}</a>
-          )}
-        </p>
-      )}
-
+    <div className="flex justify-center flex-row">
+      <div className="min-w-75">
+        {!isEditingName && (
+          <p>
+            {song.url.length === 0 ? (
+              song.name
+            ) : (
+              <a href={song.url}>{song.name}</a>
+            )}
+          </p>
+        )}
+      </div>
       {isEditingName && (
         <input
           ref={inputNameRef}
@@ -108,12 +109,14 @@ const SongItem = ({ song, handleRemoveSong, handleSongUpdate }: Props) => {
         />
       )}
 
-      <SongStatusDropdown
-        value={status}
-        setIsVisible={setIsEditingURL}
-        handleSelectChange={handleStatusChange}
-      />
-
+      <div className="pr-10">
+        <SongStatusDropdown
+          styles="border ms-5 p-2 h-10"
+          value={status}
+          setIsVisible={setIsEditingURL}
+          handleSelectChange={handleStatusChange}
+        />
+      </div>
       {itemIsMenuShown ? (
         <div ref={itemMenuRef}>
           <ItemMenu

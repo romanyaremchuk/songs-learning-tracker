@@ -4,17 +4,20 @@ interface Props {
   setIsVisible?: (isVisible: boolean) => void;
   handleSelectChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   value: "wantToLearn" | "learning" | "learned";
+  styles: string;
 }
 
 const SongStatusDropdown = ({
   handleSelectChange,
   setIsVisible,
   value,
+  styles,
 }: Props) => {
   return (
     <>
       <select
-        className="border p-2 w-full"
+        //className="border ms-5 p-2 h-10"
+        className={styles}
         onFocus={() => setIsVisible?.(true)}
         onBlur={() => setIsVisible?.(false)}
         onChange={handleSelectChange}

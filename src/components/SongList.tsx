@@ -20,9 +20,9 @@ const SongList = ({
       ? songs
       : songs.filter((song) => song.status === statusCategory);
   return (
-    <>
+    <div>
       <h1>{statusCategory}</h1>
-      <div>
+      <div className="">
         {filteredSongs.map((song) => (
           <SongItem
             key={song.id}
@@ -40,7 +40,7 @@ const SongList = ({
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -4,17 +4,20 @@ interface Props {
 
 const SongsFilter = ({ setFilter }: Props) => {
   return (
-    <div>
-      <button className="filter-btn" onClick={() => setFilter("all")}>
+    <div className="flex justify-center-safe">
+      <button className="filter-btn-big" onClick={() => setFilter("all")}>
         All songs
       </button>
-      <button className="filter-btn" onClick={() => setFilter("wantToLearn")}>
+      <button
+        className="filter-btn-big"
+        onClick={() => setFilter("wantToLearn")}
+      >
         To Learn
       </button>
-      <button className="filter-btn" onClick={() => setFilter("learning")}>
+      <button className="filter-btn-big" onClick={() => setFilter("learning")}>
         Learning
       </button>
-      <button className="filter-btn" onClick={() => setFilter("learned")}>
+      <button className="filter-btn-big" onClick={() => setFilter("learned")}>
         Learned
       </button>
     </div>
